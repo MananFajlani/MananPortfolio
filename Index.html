@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Manan Fajlani - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            margin-top: 60px; /* Add top margin to prevent overlap with fixed top strip */
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px 0;
+        }
+
+        .profile-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .projects-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .project-platforms {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .platform-tag {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .project-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .project-client {
+            font-size: 0.9rem;
+            color: #888;
+            font-style: italic;
+        }
+
+        .play-store-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(45deg, #01875f, #4caf50);
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            box-shadow: 0 5px 15px rgba(1, 135, 95, 0.3);
+        }
+
+        .play-store-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(1, 135, 95, 0.4);
+            background: linear-gradient(45deg, #00695c, #388e3c);
+        }
+
+        .play-store-btn:active {
+            transform: translateY(0);
+        }
+
+        .resume-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        .resume-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 107, 107, 0.4);
+            background: linear-gradient(45deg, #ff5252, #d32f2f);
+        }
+
+        .resume-btn:active {
+            transform: translateY(0);
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                margin-top: 90px; /* More margin for mobile where strip is taller */
+            }
+
+            .profile-section, .projects-section {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .project-card {
+                padding: 20px;
+            }
+
+            .contact-card {
+                position: static;
+                margin: 0 auto 24px auto;
+                left: unset;
+                top: unset;
+            }
+
+            .top-strip {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 12px 6px;
+                font-size: 0.98rem;
+                text-align: center;
+            }
+
+            .top-strip-item {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .top-social {
+                margin-left: 0;
+            }
+        }
+
+        .top-strip {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background: linear-gradient(90deg, #232526 0%, #414345 100%);
+            color: #fff;
+            padding: 12px 0 8px 0;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.2em;
+            transition: flex-direction 0.3s, align-items 0.3s;
+        }
+@media (min-width: 900px) {
+    .top-strip {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        padding: 10px 0;
+    }
+    .top-strip-item, .top-strip-icons {
+        margin: 0 18px;
+    }
+}
+.top-strip-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    font-size: 1rem;
+    margin: 4px 0;
+    justify-content: center;
+}
+.top-strip-icons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin: 6px 0 2px 0;
+}
+.top-social {
+    display: flex;
+    align-items: center;
+    transition: filter 0.2s;
+}
+.top-social:hover {
+    filter: brightness(1.3);
+}
+.top-icon {
+    width: 28px;
+    height: 28px;
+    margin-right: 8px;
+    vertical-align: middle;
+    object-fit: contain;
+    filter: none;
+    background: none; /* Remove background for true transparency */
+    border-radius: 0;  /* Remove border radius for no background shape */
+}
+.top-strip-icons .top-icon {
+    margin-right: 0;
+}
+@media (max-width: 768px) {
+    .top-strip {
+        padding: 10px 0 6px 0;
+        font-size: 0.98rem;
+    }
+    .top-strip-icons {
+        gap: 16px;
+    }
+}
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Add Play Store style CSS */
+.playstore-style {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+}
+.app-icon img {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    object-fit: cover;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.app-info {
+    margin-bottom: 8px;
+}
+.app-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+}
+.app-dev {
+    font-size: 0.95rem;
+    color: #888;
+    margin-bottom: 2px;
+}
+.app-rating {
+    font-size: 1rem;
+    color: #222;
+    margin-bottom: 8px;
+}
+.playstore-green {
+    background: linear-gradient(45deg, #34a853, #0f9d58);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 20px;
+    padding: 10px 22px;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    margin-top: 10px;
+    box-shadow: 0 4px 12px rgba(52,168,83,0.15);
+}
+.playstore-green:hover {
+    background: linear-gradient(45deg, #0f9d58, #34a853);
+}
+
+/* Update Play Store banner style CSS for left icon and no stretch */
+.app-banner {
+    position: relative;
+    width: 100%;
+    margin-bottom: 32px;
+}
+.app-banner img:first-child {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    display: block;
+}
+.app-icon-overlay {
+    position: absolute;
+    left: 18px;
+    bottom: -24px;
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    background: #fff;
+    border: 4px solid #fff;
+    object-fit: contain;
+}
+.app-banner img[src*="BlockGrinder"] {
+    object-position: center center !important;
+}
+    </style>
+</head>
+<body>
+    <div class="top-strip">
+        <div class="top-strip-item">
+            <img src="https://png.pngtree.com/template/20190725/ourmid/pngtree-gmail-logo-png-image_282635.jpg" alt="Gmail" class="top-icon"> mananfajlani1234@gmail.com
+        </div>
+        <div class="top-strip-item">
+            <img src="https://cdn-icons-png.freepik.com/256/4620/4620717.png?semt=ais_hybrid" alt="Contact" class="top-icon"> +91 85114 04540
+        </div>
+        <div class="top-strip-icons">
+            <a href="https://www.instagram.com/manan_fajlani/" target="_blank" class="top-social"><img src="https://static.vecteezy.com/system/resources/previews/042/148/632/non_2x/instagram-logo-instagram-social-media-icon-free-png.png" alt="Instagram" class="top-icon"></a>
+            <a href="https://linkedin.com/in/" target="_blank" class="top-social"><img src="https://static.vecteezy.com/system/resources/previews/012/660/862/non_2x/linkedin-logo-on-transparent-isolated-background-free-vector.jpg" alt="LinkedIn" class="top-icon"></a>
+            <a href="https://wa.me/918511404540" target="_blank" class="top-social"><img src="https://png.pngtree.com/element_our/sm/20180626/sm_5b321c99945a2.jpg" alt="WhatsApp" class="top-icon"></a>
+            <a href="mailto:mananfajlani1234@gmail.com" target="_blank" class="top-social"><img src="https://png.pngtree.com/template/20190725/ourmid/pngtree-gmail-logo-png-image_282635.jpg" alt="Gmail" class="top-icon"></a>
+        </div>
+    </div>
+
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="profile-section">
+                <div class="profile-img">MF</div>
+                <h1>Manan Fajlani</h1>
+                <p class="subtitle">Game Developer</p>
+                <p class="description">
+                    Blending creativity with code, I build games and digital experiences using Unity that entertain, challenge, and inspire. Skilled in both 2D and 3D development, I bring ideas to life with performance in mind and passion at the core.
+                </p>
+                
+                <a href="Manan's Resume.pdf" class="resume-btn" download>
+                    📄 Download Resume
+                </a>
+            </div>
+        </header>
+
+        <main>
+            <div class="projects-section">
+                <h2 class="section-title">Featured Projects</h2>
+                
+                <div class="projects-grid">
+                    <div class="project-card playstore-style">
+    <div class="app-banner">
+        <img src="https://play-lh.googleusercontent.com/C0vErZZf7waert9_O3wpxDhnoWm-KE63Nw_KoOyZYxfwi_tTnRRHew_AouoQVzVYSlM=w416-h235-rw" alt="Boost Rocket Banner" style="width: 100%; height: 120px; object-fit: cover; object-position: top center; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.10);">
+        <img src="https://play-lh.googleusercontent.com/ZUj7E8ndu3BM2GP450NoJiDFZnt7CbvszB90igCWjGIi9deSbEOiO3RSH0glw5pUSw=w240-h480-rw" alt="Boost Rocket Icon" class="app-icon-overlay">
+    </div>
+    <div class="app-info">
+        <h3 class="app-title">Boost Rocket</h3>
+        <div class="app-dev">Manan Fajlani</div>
+        <div class="app-rating">
+            <span>4.5</span>
+            <span style="color: #FFD600;">★</span>
+        </div>
+        <div class="project-platforms" style="margin-bottom:8px;">
+            <span class="platform-tag">Android</span>
+        </div>
+    </div>
+    <p class="project-description">
+        An exciting space adventure game where players navigate their rocket through challenging obstacles while collecting power-ups to boost their performance.
+    </p>
+    <a href="https://play.google.com/store/apps/details?id=com.arcaderoot.boostrocket&hl=en" target="_blank" class="play-store-btn playstore-green">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" style="height:24px;vertical-align:middle;margin-right:8px;">
+        Get it on Google Play
+    </a>
+</div>
+
+                    <div class="project-card playstore-style">
+    <div class="app-banner">
+        <img src="https://play-lh.googleusercontent.com/y1ruva1Im_GsPIDaBuBpeXOUDK1GxD-TBAkvOf2dcGRJtntQXPWA0EWUwxvEYHB__WH4=w416-h235-rw" alt="Block Grinder Banner" style="width: 100%; height: 120px; object-fit: cover; object-position: center center; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.10);">
+        <img src="https://play-lh.googleusercontent.com/U6Q5_seWf35qHXgtbf_v7a5FUUQzfY0aGTpI5CzyLT8NdElWHh0QdXoxO313oSuPavM=w240-h480-rw" alt="Block Grinder Icon" class="app-icon-overlay">
+    </div>
+    <div class="app-info">
+        <h3 class="app-title">Block Grinder</h3>
+        <div class="app-dev">Manan Fajlani</div>
+        <div class="app-rating">
+            <span>4.4</span>
+            <span style="color: #FFD600;">★</span>
+        </div>
+        <div class="project-platforms" style="margin-bottom:8px;">
+            <span class="platform-tag">Android</span>
+        </div>
+    </div>
+    <p class="project-description">
+        A fun and challenging arcade game where you grind through blocks, avoid obstacles, and collect rewards to reach the highest score.
+    </p>
+    <a href="https://play.google.com/store/apps/details?id=com.arcaderoot.BlockGrinder&hl=en" target="_blank" class="play-store-btn playstore-green">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" style="height:24px;vertical-align:middle;margin-right:8px;">
+        Get it on Google Play
+    </a>
+</div>
+
+                    <div class="project-card">
+                        <div class="project-icon">💥</div>
+                        <h3 class="project-title">Ball Blast Cannon</h3>
+                        <div class="project-platforms">
+                            <span class="platform-tag">Android</span>
+                        </div>
+                        <p class="project-description">
+                            Action-packed cannon shooting game where players aim and blast colorful balls to create explosive chain reactions and achieve high scores.
+                        </p>
+                        <a href="https://play.google.com/store/apps/details?id=com.ballBlastCannon.game" target="_blank" class="play-store-btn">
+                            📱 Play Store : Coming Soon 
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Contact Card moved to bottom -->
+    
+    <style>
+    .contact-card {
+        /* This class is now unused, can be removed if desired */
+    }
+    </style>
+    <script>
+        // Add smooth scrolling and animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Initially hide cards
+            document.querySelectorAll('.project-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+
+            // Add hover effects for better interactivity
+            document.querySelectorAll('.project-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
